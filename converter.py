@@ -1,4 +1,4 @@
-from checker import hastag
+from checker import compteur_hastag, compteur_etoile, compteur_tiret
 
 fichier_markdown = open("markdown.md", "r")
 fichier_index = open("index.html", "w")
@@ -6,7 +6,9 @@ fichier_index = open("index.html", "w")
 markdown = []
 index = []
 
-hashtag = []
+hashtags = []
+etoiles = []
+tirets = []
 
 compteur = 0
 
@@ -15,8 +17,10 @@ for ligne in fichier_markdown:
 
 for lettre in markdown[compteur]:
     compteur += 1
-    hastag(lettre, hashtag)
-   
+    compteur_hastag(lettre, hashtags)
+    compteur_etoile(lettre, etoiles)
+    compteur_tiret(lettre, tirets)
+
 '''         
 for lettres in markdown:
     fichier_index.write("<h1>")
@@ -30,5 +34,8 @@ print("Nombre de lignes du fichier .md :", len(markdown))
 # Verification de la lecture du fichier markdown
 print("La liste :\n", markdown)
 
-# Affichage du nombre de hashtag
-print("Valeur du titre :\n", hashtag)
+print("Nombre de hashtags :\n", hashtags)
+
+print("Nombre de etoiles :\n", etoiles)
+
+print("Nombre de tirets :\n", tirets)

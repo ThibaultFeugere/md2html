@@ -1,4 +1,4 @@
-from checker import compteur_hastag, compteur_etoile, compteur_tiret
+from library import compteur_elements
 
 fichier_markdown = open("markdown.md", "r")
 fichier_index = open("index.html", "w")
@@ -17,9 +17,8 @@ for ligne in fichier_markdown:
 
 for lettre in markdown[compteur]:
     compteur += 1
-    compteur_hastag(lettre, hashtags)
-    compteur_etoile(lettre, etoiles)
-    compteur_tiret(lettre, tirets)
+    compteur_elements(lettre, hashtags, etoiles, tirets)    
+
 
 '''         
 for lettres in markdown:

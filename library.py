@@ -6,7 +6,7 @@ def compteur_elements(lettre, hashtags, etoiles, tirets):
     if lettre == "-":
         tirets.append(lettre)
         
-def ecriture_hastags(fichier_index, hashtags, markdown, ligne_en_cours):
+def ecriture_head(fichier_index, hashtags, markdown, ligne_en_cours):
     if len(hashtags) == 1:
         fichier_index.write("<h1>")
         fichier_index.write(markdown[ligne_en_cours])
@@ -31,3 +31,15 @@ def ecriture_hastags(fichier_index, hashtags, markdown, ligne_en_cours):
         fichier_index.write("<h6>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h6>")
+
+def ecriture_list():
+    pass
+
+def ecriture_hr():
+    pass
+
+def ecriture_italic():
+    pass
+
+def ecriture_bold():
+    pass

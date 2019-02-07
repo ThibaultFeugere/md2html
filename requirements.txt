@@ -1,1 +1,3 @@
 Python Version : Python 3.7.2
+
+For import of codecs, if you have some issues : #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6

@@ -19,46 +19,46 @@ def compteur_elements(lettre, hashtags, etoiles, tirets, apostrophe_chelou, plus
     if lettre == "+":
         plus.append(lettre)
         
-def ecriture_head(fichier_index, hashtags, markdown, ligne_en_cours):
-    if len(hashtags) == 1:
+def ecriture_head(fichier_index, markdown, hashtags, ligne_en_cours, alphabet):
+    if len(hashtags) == 1 and alphabet[0] == "#":
         fichier_index.write("<h1>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h1>")
-    elif len(hashtags) == 2:
+    elif len(hashtags) == 2 and alphabet[1] == "#":
         fichier_index.write("<h2>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h2>")
-    elif len(hashtags) == 3:
+    elif len(hashtags) == 3 and alphabet[2] == "#":
         fichier_index.write("<h3>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h3>")
-    elif len(hashtags) == 4:
+    elif len(hashtags) == 4 and alphabet[3] == "#":
         fichier_index.write("<h4>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h4>")
-    elif len(hashtags) == 5:
+    elif len(hashtags) == 5 and alphabet[4] == "#":
         fichier_index.write("<h5>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h5>")
-    elif len(hashtags) == 6:
+    elif len(hashtags) == 6 and alphabet[5] == "#":
         fichier_index.write("<h6>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</h6>")
 
-def ecriture_list(fichier_index, etoiles, tirets, plus, markdown, ligne_en_cours):
-    if len(etoiles) == 1:
+def ecriture_list(fichier_index, markdown, ligne_en_cours, alphabet):
+    if alphabet[0] == "*" and alphabet[1] == " " and alphabet[-1] != "*":
         fichier_index.write("<ul>")
         fichier_index.write("<li>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</li>")
         fichier_index.write("</ul>")
-    elif len(tirets) == 1:
+    elif alphabet[0] == "-" and alphabet[1] == " ":
         fichier_index.write("<ul>")
         fichier_index.write("<li>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</li>")
         fichier_index.write("</ul>")
-    elif len(plus) == 1:
+    elif alphabet[0] == "+" and alphabet[1] == " ":
         fichier_index.write("<ul>")
         fichier_index.write("<li>")
         fichier_index.write(markdown[ligne_en_cours])
@@ -66,24 +66,30 @@ def ecriture_list(fichier_index, etoiles, tirets, plus, markdown, ligne_en_cours
         fichier_index.write("</ul>")
 
 
-def ecriture_hr(fichier_index, tirets, markdown, ligne_en_cours):
-    if len(tirets) >= 3:
+def ecriture_hr(fichier_index, markdown, ligne_en_cours, alphabet):
+    if alphabet[0] == "-" and alphabet[1] == "-" and alphabet[2] == "-":
         fichier_index.write("<hr>")
 
-def ecriture_italic(fichier_index, etoiles, markdown, ligne_en_cours):
-    if len(etoiles) == 2:
+def ecriture_italic(fichier_index, markdown, ligne_en_cours, alphabet):
+    if alphabet[0] == "*" and alphabet[1] != " " and alphabet[-1] == "*":
         fichier_index.write("<i>")
         fichier_index.write(markdown[ligne_en_cours])
         fichier_index.write("</i>")
 
-def ecriture_bold(fichier_index, etoiles, markdown, ligne_en_cours):
-    if len(etoiles) == 4:
-        fichier_index.write("<strong>")
-        fichier_index.write(markdown[ligne_en_cours])
-        fichier_index.write("</strong>")
+def ecriture_bold(fichier_index, markdown, ligne_en_cours, alphabet):
+    '''
+    fichier_index.write("<strong>")
+    for lettre in alphabet[2:-3]:
+        fichier_index.write(lettre)
+    fichier_index.write("</strong>")
+    '''
+
+def ecriture_url(fichier_index, markdown, ligne_en_cours, alphabet):
+    if "http://" in markdown[ligne_en_cours]:
+        fichier_index.write("Lol")
 
 def finalistation(fichier_index):
-    fichier_index.write('''<footer>
+    fichier_index.write('''<footer style="color:grey; font-family: roboto; font-size: 22px;">
         Script python développé par Thibault Feugère.
     </footer>
 </body>

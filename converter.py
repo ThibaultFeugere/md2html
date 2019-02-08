@@ -1,5 +1,11 @@
 import codecs
-from library import initialisation ,compteur_elements, ecriture_head, ecriture_list, ecriture_hr, ecriture_italic, ecriture_bold, finalistation
+import argparse
+from library import initialisation ,compteur_elements, ecriture_head, ecriture_list, ecriture_hr, ecriture_italic, ecriture_bold, ecriture_url, finalistation
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-i", "--input", help="directory d'entrée")
+parser.add_argument("-o", "--output", help="directory de sortie")
+parser.parse_args()
 
 fichier_markdown = codecs.open("markdown/markdown.md", "r", "utf-8")
 # W supprime le contenu du fichier avant d'écrire dedans.
@@ -11,23 +17,11 @@ initialisation(fichier_index)
 markdown = []
 texte_pur = []
 
+n = 0
+
 for ligne in fichier_markdown:
     print(ligne)
-    suppression_hastags = ligne.replace("#", "")
-    '''
-    suppression_retour = ligne.replace("\n", "")
-    suppression_etoiles = ligne.replace("*", "")
-    suppression_plus = ligne.replace("+ ", "")
-    suppression_tirets = ligne.replace("- ", "")
-    '''
     markdown.append(ligne)
-    texte_pur.append(suppression_hastags)
-    '''
-    texte_pur.append(suppression_retour)
-    texte_pur.append(suppression_etoiles)
-    texte_pur.append(suppression_plus)
-    texte_pur.append(suppression_tirets)
-    '''
 
 # Verification de la lecture du fichier markdown
 print("Les lignes :\n", markdown)
@@ -42,6 +36,8 @@ compteur = 0
 
 while ligne_en_cours < len(markdown):
     
+    alphabet = []
+
     hashtags = []
     etoiles = []
     tirets = []
@@ -51,18 +47,27 @@ while ligne_en_cours < len(markdown):
     print("Analyse et conversion de la ligne :", ligne_en_cours + 1, "\n")
     
     for lettre in markdown[compteur]:
+        if lettre != "\n":
+            alphabet.append(lettre)
+        else:
+            alphabet.append(" ")
         compteur_elements(lettre, hashtags, etoiles, tirets, apostrophe_chelou, plus)
     
     print("Nombre de hashtags :", hashtags)
     print("Nombre de d'étoiles :", etoiles)
     print("Nombre de tirets :", tirets)
+    print("Nombre de plus :", plus)
     print("Nombre d'apostrophes chelous :", apostrophe_chelou, "\n")
+
+    print("Les lettres de cette ligne sont :", alphabet)
+    print(alphabet[2:-1])
     
-    ecriture_head(fichier_index, hashtags, markdown, ligne_en_cours)
-    ecriture_list(fichier_index, etoiles, tirets, plus, markdown, ligne_en_cours)
-    ecriture_hr(fichier_index, tirets, markdown, ligne_en_cours)
-    ecriture_italic(fichier_index, etoiles, markdown, ligne_en_cours)
-    ecriture_bold(fichier_index, etoiles, markdown, ligne_en_cours)
+    ecriture_head(fichier_index, markdown, hashtags, ligne_en_cours, alphabet)
+    ecriture_list(fichier_index, markdown, ligne_en_cours, alphabet)
+    ecriture_hr(fichier_index, markdown, ligne_en_cours, alphabet)
+    ecriture_italic(fichier_index, markdown, ligne_en_cours, alphabet)
+    ecriture_bold(fichier_index, markdown, ligne_en_cours, alphabet)
+    ecriture_url(fichier_index, markdown, ligne_en_cours, alphabet)
 
     compteur += 1
     ligne_en_cours += 1

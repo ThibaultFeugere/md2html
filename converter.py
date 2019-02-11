@@ -3,13 +3,20 @@ import argparse
 from library import initialisation ,compteur_elements, ecriture_head, ecriture_list, ecriture_hr, ecriture_italic, ecriture_bold, ecriture_url, finalistation
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-i", "--input", help="directory d'entrée")
-parser.add_argument("-o", "--output", help="directory de sortie")
+
+parser.add_argument("-i", "--input-directory", required="True", help="directory d'entrée", metavar="")
+parser.add_argument("-o", "--output-directory", required="True", help="directory de sortie", metavar="")
+parser.add_argument("-k", "--kikoo-lol", help="Pour les kikoos geek", metavar="")
+parser.add_argument("-a", "--achtung", help="Pour nos amis les allemands", metavar="")
+
 parser.parse_args()
 
-fichier_markdown = codecs.open("markdown/markdown.md", "r", "utf-8")
+markdown_folder = parser.parse_args().input_directory
+html_folder = parser.parse_args().output_directory
+
+fichier_markdown = codecs.open(markdown_folder, "r", "utf-8")
 # W supprime le contenu du fichier avant d'écrire dedans.
-fichier_index = codecs.open("html/index.html", "w", "utf-8")
+fichier_index = codecs.open(html_folder, "w", "utf-8")
 
 # On écrit le début du code html
 initialisation(fichier_index)

@@ -1,3 +1,9 @@
 Python Version : Python 3.7.2
 
 For import of codecs, if you have some issues : #!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3.6
+
+Imports used are : - codecs and - argparse
+
+Remember to use terminal for debugging mode
+
+Do not use more than one markdown element per line

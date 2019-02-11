@@ -71,22 +71,25 @@ def ecriture_hr(fichier_index, markdown, ligne_en_cours, alphabet):
         fichier_index.write("<hr>")
 
 def ecriture_italic(fichier_index, markdown, ligne_en_cours, alphabet):
-    if alphabet[0] == "*" and alphabet[1] != " " and alphabet[-1] == "*":
-        fichier_index.write("<i>")
-        fichier_index.write(markdown[ligne_en_cours])
-        fichier_index.write("</i>")
+    if alphabet[0] == "*":
+        if alphabet[-1] == "*" or alphabet[-2] == "*":
+            fichier_index.write("<i>")
+            fichier_index.write(markdown[ligne_en_cours])
+            fichier_index.write("</i>")
 
 def ecriture_bold(fichier_index, markdown, ligne_en_cours, alphabet):
-    '''
-    fichier_index.write("<strong>")
-    for lettre in alphabet[2:-3]:
-        fichier_index.write(lettre)
-    fichier_index.write("</strong>")
-    '''
+    if alphabet[0] == "*" and alphabet[1] == "*":
+        fichier_index.write("<strong>")
+        fichier_index.write(markdown[ligne_en_cours])
+        fichier_index.write("</strong>")
 
 def ecriture_url(fichier_index, markdown, ligne_en_cours, alphabet):
     if "http://" in markdown[ligne_en_cours]:
-        fichier_index.write("Lol")
+        fichier_index.write('<a href="')
+        fichier_index.write(markdown[ligne_en_cours])
+        fichier_index.write('">')
+        fichier_index.write(markdown[ligne_en_cours])
+        fichier_index.write("</a>")
 
 def finalistation(fichier_index):
     fichier_index.write('''<footer style="color:grey; font-family: roboto; font-size: 22px;">

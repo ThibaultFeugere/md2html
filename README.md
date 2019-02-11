@@ -10,9 +10,15 @@ A little script in Python to convert a file.md in index.html.
 * `-t ./autre_dossier` ou `--template-directory ./autre_dossier` : éventuellement le dossier contenant des modèles de pages web à compléter
 * `-h` ou `--help` : pour afficher de l'aide pour exliquer les paramètres de la commande
 
+## Informations importantes :
+
+En raison d'un développement manuel toujours en cours, veillez à ne pas mettre plusieurs balises markdowns sur la même ligne.
+
+Aussi, la balise markdown **gras** est considéré ***gras italique*** par le programme et je travaille actuellement sur ce problème pour le fixer.
+
 ## Avancement du projet :
 
-# Checklist
+**Checklist :**
 
 | Élément à vérifier                             | Barême |
 | ---------------------------------------------- | ------ |
@@ -38,7 +44,7 @@ A little script in Python to convert a file.md in index.html.
 | Support de -a ou --achtung                     | EN COURS     |
 | Robustesse aux fichiers markdown               | NON     |
 | Projet open-source                             | FAIT     |
-| Package sur le Python Package Index            | FAIT     |
+| Package sur le Python Package Index            | EN COURS     |
 | Utilisation des expressions régulières         | EN COURS     |
 | Utilisation de packages de la communauté       | FAIT     |
 | Fourniture d'un requirements.txt ou équivalent | FAIT     |
@@ -52,3 +58,8 @@ Le fichier https://raw.githubusercontent.com/vpoulailleau/site_statique/master/r
 * `-k` ou `--kikoo-lol` qui ajoutera dans le texte des « kikoo », « lol », « mdr », « ptdr » ou qui répète des lettres comme dans Hellllo, et autres déformations du français.
 * `-a` ou `--achtung` pour aider les allemands à lire nos blogs français.
 * Ajout d'un système permettant d'ajouter plusieurs balises par ligne
+* Suppression des balises markdowns lors de la réécriture
+
+En cas de problème, n'hésitez pas à proposer des modifications ou me contacter.
+
+Bonne conversion à vous !
